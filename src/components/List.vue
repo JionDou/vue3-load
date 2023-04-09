@@ -9,6 +9,7 @@ export default {
     const loadingText = ref("请稍等，加载中...")
 
     function getList(num) {
+      if (loading) return
       loading = true
       setTimeout(() => {
         const colors = []
@@ -59,7 +60,7 @@ export default {
     <div v-for="(item, index) in list" :key="index" class="list-item" :style="{ backgroundColor: item.background }">
       {{ index }}
     </div>
-    <div v-if="!loading" class="scroll-container__bottom">
+    <div v-if="!loading && list.length <= 50" class="scroll-container__bottom">
       <div class="loading-state">
         <span class="icon rotate">
           <svg t="1651889853940" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
